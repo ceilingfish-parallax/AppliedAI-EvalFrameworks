@@ -1,0 +1,33 @@
+order_id,customer_id,customer_name,product_id,product_name,order_date,unit_price
+O1001,C001,Ella,P03,V60 Pour-Over Dripper,2023-10-05,25
+O1002,C001,Ella,P04,V60 Paper Filters (100),2023-11-02,6
+O1003,C001,Ella,P05,Gooseneck Kettle,2024-01-15,55
+O1004,C001,Ella,P11,Coffee Beans – Single Origin (250g),2024-03-10,9
+O1005,C002,Marcus,P08,Espresso Machine Mini,2024-12-01,450
+O1006,C002,Marcus,P09,Milk Frother,2025-01-10,25
+O1007,C002,Marcus,P15,Descaler Solution,2025-02-20,8
+O1008,C002,Marcus,P06,Burr Grinder Classic,2025-04-05,120
+O1009,C003,Priya,P01,Cafetière (French Press),2024-03-03,22
+O1010,C003,Priya,P10,Coffee Beans – House Blend (1kg),2024-04-01,18
+O1011,C003,Priya,P13,Ceramic Mug Set (x4),2024-06-12,28
+O1012,C004,Tom,P02,AeroPress Go,2025-09-09,30
+O1013,C004,Tom,P11,Coffee Beans – Single Origin (250g),2025-11-01,9
+O1014,C005,Sara,P12,Brewing Scales,2024-02-14,30
+O1015,C005,Sara,P16,Storage Canister,2025-03-20,19
+O1016,C005,Sara,P19,Smart Scales (2026),2026-05-15,48
+O1017,C006,Dan,P06,Burr Grinder Classic,2023-07-01,120
+O1018,C006,Dan,P10,Coffee Beans – House Blend (1kg),2023-08-01,18
+O1019,C006,Dan,P11,Coffee Beans – Single Origin (250g),2023-10-01,9
+O1020,C006,Dan,P18,Burr Grinder X2 (2026),2026-05-20,160
+O1021,C007,Nina,P03,V60 Pour-Over Dripper,2024-09-01,25
+O1022,C007,Nina,P04,V60 Paper Filters (100),2024-10-01,6
+O1023,C007,Nina,P17,V60 Pro Dripper (2026),2026-04-15,35
+O1024,C008,Raj,P13,Ceramic Mug Set (x4),2025-01-05,28
+O1025,C008,Raj,P14,Travel Cup,2025-02-05,16
+O1026,C008,Raj,P10,Coffee Beans – House Blend (1kg),2025-04-01,18
+O1027,C009,Helen,P05,Gooseneck Kettle,2024-05-01,55
+O1028,C009,Helen,P12,Brewing Scales,2024-06-01,30
+O1029,C009,Helen,P03,V60 Pour-Over Dripper,2024-07-01,25
+O1030,C009,Helen,P04,V60 Paper Filters (100),2024-09-01,6
+O1031,C010,Omar,P08,Espresso Machine Mini,2025-03-01,450
+O1032,C010,Omar,P09,Milk Frother,2025-05-01,25

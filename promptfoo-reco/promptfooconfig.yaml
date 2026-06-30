@@ -1,0 +1,89 @@
+# promptfoo eval: product recommendation, scored three ways.
+#
+# GENERATION:  a local Gemma model in LM Studio (recommend.py provider).
+# SCORING:
+#   1. deterministic  -> did it recommend what the customer actually bought next?   (code, no model)
+#   2. statistical    -> embedding distance to the engine's most successful reco    (OpenAI embeddings)
+#   3. LLM-as-judge   -> relevance / affordability / recency rubrics                 (OpenAI gpt-4o-mini)
+#
+# Run from this folder:
+#   1) Start LM Studio, load a Gemma model, enable the local server (http://127.0.0.1:1234).
+#   2) export OPENAI_API_KEY=sk-...     # used ONLY for the embeddings + the judge
+#   3) npx promptfoo@latest eval
+#      npx promptfoo@latest view
+
+description: "Product recommendation — deterministic vs similarity vs LLM-as-judge (Gemma, local)"
+
+prompts:
+  - file://prompts/simple_recommender.txt
+  - file://prompts/advanced_recommender.txt
+
+# The recommendation engine under test = local Gemma via LM Studio.
+providers:
+  - id: file://recommend.py
+    label: gemma-lmstudio
+
+tests: file://generate_tests.py:generate_tests
+
+defaultTest:
+  assert:
+    # 1) DETERMINISTIC — matches the held-out next purchase? (pure code)
+    - type: python
+      value: file://assert_next_match.py
+      metric: 1_ExactNextMatch
+
+    # 2) STATISTICAL — embedding cosine similarity to the most successful engine reco
+    - type: similar
+      value: "{{top_reco}}"
+      threshold: 0.55
+      provider: openai:embedding:text-embedding-3-small
+      metric: 2_SimilarityToTopReco
+
+    # 3) LLM-AS-JUDGE — three rubrics, graded by OpenAI
+    - type: llm-rubric
+      provider: openai:gpt-4o-mini
+      metric: 3_Judge_Relevance
+      value: |
+        RELEVANCE. The recommended product is the output below.
+        The customer recently bought:
+        {{history_text}}
+        Catalogue (name | category | £price | released):
+        {{catalogue_text}}
+
+        PASS if the recommendation sensibly complements or follows on from their
+        purchases (a logical next buy), and is NOT simply a duplicate of something
+        they obviously already own. FAIL if it is unrelated or redundant.
+        Explain briefly.
+
+    - type: llm-rubric
+      provider: openai:gpt-4o-mini
+      metric: 4_Judge_Affordability
+      value: |
+        AFFORDABILITY. The recommended product is the output below.
+        This customer's typical spend is about £{{avg_spend}} per item.
+        Catalogue with prices:
+        {{catalogue_text}}
+
+        The ONLY thing that matters here is not pushing an expensive product onto
+        someone who never spends much.
+        FAIL only if the recommendation is significantly MORE expensive than this
+        customer's typical spend (a modest step up is fine).
+        PASS in every other case. In particular, a CHEAP recommendation ALWAYS
+        passes — even for a customer who usually spends a lot, recommending
+        something inexpensive is perfectly fine. Explain briefly.
+
+    - type: llm-rubric
+      provider: openai:gpt-4o-mini
+      metric: 5_Judge_Recency
+      value: |
+        RECENCY. Today's date is {{today}}. The recommended product is the output below.
+        The customer's purchase history, most recent first:
+        {{history_text}}
+        Catalogue (name | category | £price | released):
+        {{catalogue_text}}
+
+        PASS if the recommendation follows on from what the customer has bought MOST
+        recently — it should reflect their current, latest interests rather than older
+        purchases further back in their history. FAIL if it keys off a stale, long-ago
+        purchase when a more recent one points to a better, more relevant choice.
+        Explain briefly.

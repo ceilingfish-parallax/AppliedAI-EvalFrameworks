@@ -1,0 +1,7 @@
+A customer at our coffee-equipment shop has previously bought:
+{{history_text}}
+
+Our full catalogue (name | category | £price | released):
+{{catalogue_text}}
+
+Recommend exactly ONE product from the catalogue that this customer is most likely to buy next. Reply with ONLY the exact product name as written in the catalogue — no explanation, no extra words.
