@@ -1,36 +1,36 @@
 product_id,name,category,price,release_date
 P01,Cafetière (French Press),brewing,22,2023-02-01
+P20,Yoga Mat,fitness,28,2024-04-01
 P02,AeroPress Go,brewing,30,2024-05-01
+P21,Bluetooth Earbuds,electronics,45,2025-02-01
 P03,V60 Pour-Over Dripper,brewing,25,2023-09-01
+P22,Stainless Steel Water Bottle,outdoor,18,2023-08-01
 P04,V60 Paper Filters (100),consumable,6,2022-01-01
+P23,Scented Candle Set,home,22,2024-10-01
 P05,Gooseneck Kettle,equipment,55,2024-03-01
+P24,Wireless Phone Charger,electronics,30,2025-05-01
 P06,Burr Grinder Classic,grinder,120,2023-06-01
+P25,Cotton Bath Towels (x2),home,35,2023-11-01
 P07,Hand Grinder,grinder,45,2024-08-01
+P26,Garden Secateurs,garden,24,2024-03-01
 P08,Espresso Machine Mini,espresso,450,2024-11-01
+P27,Desk Lamp LED,home,40,2025-01-01
 P09,Milk Frother,espresso,25,2023-04-01
+P28,Running Socks (3-pack),fitness,12,2024-07-01
 P10,Coffee Beans – House Blend (1kg),beans,18,2025-01-01
+P29,Notebook & Pen Set,stationery,15,2023-05-01
 P11,Coffee Beans – Single Origin (250g),beans,9,2025-01-01
+P30,Umbrella Compact,accessory,16,2024-09-01
 P12,Brewing Scales,accessory,30,2024-02-01
+P31,Dog Chew Toy,pet,9,2025-03-01
 P13,Ceramic Mug Set (x4),accessory,28,2023-12-01
+P32,Sunglasses Polarised,accessory,55,2025-06-01
 P14,Travel Cup,accessory,16,2024-06-01
+P33,Board Game – Strategy,toys,32,2024-12-01
 P15,Descaler Solution,consumable,8,2022-07-01
+P34,Reusable Shopping Bags (x5),home,10,2023-07-01
 P16,Storage Canister,accessory,19,2025-03-01
+P35,Phone Case Silicone,electronics,14,2025-04-01
 P17,V60 Pro Dripper (2026),brewing,35,2026-04-01
 P18,Burr Grinder X2 (2026),grinder,160,2026-05-01
 P19,Smart Scales (2026),accessory,48,2026-03-01
-P20,Yoga Mat,fitness,28,2024-04-01
-P21,Bluetooth Earbuds,electronics,45,2025-02-01
-P22,Stainless Steel Water Bottle,outdoor,18,2023-08-01
-P23,Scented Candle Set,home,22,2024-10-01
-P24,Wireless Phone Charger,electronics,30,2025-05-01
-P25,Cotton Bath Towels (x2),home,35,2023-11-01
-P26,Garden Secateurs,garden,24,2024-03-01
-P27,Desk Lamp LED,home,40,2025-01-01
-P28,Running Socks (3-pack),fitness,12,2024-07-01
-P29,Notebook & Pen Set,stationery,15,2023-05-01
-P30,Umbrella Compact,accessory,16,2024-09-01
-P31,Dog Chew Toy,pet,9,2025-03-01
-P32,Sunglasses Polarised,accessory,55,2025-06-01
-P33,Board Game – Strategy,toys,32,2024-12-01
-P34,Reusable Shopping Bags (x5),home,10,2023-07-01
-P35,Phone Case Silicone,electronics,14,2025-04-01
