@@ -33,25 +33,25 @@ defaultTest:
       value: file://assert_next_match.py
       metric: 1_ExactNextMatch
 
-    # 1b) DETERMINISTIC — generation speed, continuous score relative to a 60s budget
+    # 2) DETERMINISTIC — generation speed, continuous score relative to a 60s budget
     #     score = 1 - (gen_seconds / 60); 1s -> ~0.983, 60s+ -> 0. (pure code, no model)
     - type: python
       value: file://assert_gen_speed.py
       weight: 0.5
-      metric: 6_GenSpeed
+      metric: 2_GenSpeed
 
-    # 2) STATISTICAL — embedding cosine similarity to the most successful engine reco
+    # 3) STATISTICAL — embedding cosine similarity to the most successful engine reco
     - type: similar
       value: "{{top_reco}}"
       threshold: 0.5
       weight: 0.5
       provider: openai:embedding:text-embedding-3-small
-      metric: 2_SimilarityToTopReco
+      metric: 3_SimilarityToTopReco
 
-    # 3) LLM-AS-JUDGE — three rubrics, graded by OpenAI
+    # 4) LLM-AS-JUDGE — three rubrics, graded by OpenAI
     - type: llm-rubric
       provider: openai:gpt-4o-mini
-      metric: 3_Judge_Relevance
+      metric: 4_Judge_Relevance
       value: |
         RELEVANCE. The recommended product is the output below.
         The customer recently bought:
@@ -66,7 +66,7 @@ defaultTest:
 
     - type: llm-rubric
       provider: openai:gpt-4o-mini
-      metric: 4_Judge_Affordability
+      metric: 5_Judge_Affordability
       value: |
         AFFORDABILITY. The recommended product is the output below.
         This customer's typical spend is about £{{avg_spend}} per item.
@@ -88,7 +88,7 @@ defaultTest:
 
     - type: llm-rubric
       provider: openai:gpt-4o-mini
-      metric: 5_Judge_Recency
+      metric: 6_Judge_Recency
       value: |
         RECENCY. Today's date is {{today}}. The recommended product is the output below.
         The customer's purchase history, most recent first:
