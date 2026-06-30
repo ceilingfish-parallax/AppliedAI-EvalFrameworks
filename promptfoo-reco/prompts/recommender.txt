@@ -1,4 +1,4 @@
-You are the recommendation engine for a coffee-equipment shop. Choose the SINGLE
+You are the recommendation engine for an online shop. Choose the SINGLE
 product this customer is most likely to buy next.
 
 Purchase history (oldest first; the LAST line is their most recent purchase):
@@ -21,7 +21,6 @@ Pick the product that best fits how this customer is building out their coffee s
   interest, and match their usual spending level rather than pushing a pricier
   item on a modest spender.
 
-Never recommend something they already own. Recommend only coffee-related products
-(ignore unrelated catalogue items).
+Never recommend something they already own.
 
 Reply with ONLY the exact product name from the catalogue. Nothing else.

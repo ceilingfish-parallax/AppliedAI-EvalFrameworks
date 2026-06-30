@@ -18,6 +18,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import urllib.request
 import urllib.error
 
@@ -64,8 +65,11 @@ def clean(text):
 # ---- promptfoo provider entrypoint --------------------------------------
 def call_api(prompt, options, context):
     try:
+        t0 = time.perf_counter()
         raw = call_gemma(SYSTEM, prompt)
-        return {"output": clean(raw)}
+        gen_seconds = time.perf_counter() - t0
+        # Surface generation time so a deterministic assertion can score speed.
+        return {"output": clean(raw), "metadata": {"gen_seconds": gen_seconds}}
     except urllib.error.URLError as e:
         return {"error": f"Could not reach LM Studio at {LMSTUDIO_URL} — is it running? ({e})"}
     except Exception as e:  # noqa: BLE001
