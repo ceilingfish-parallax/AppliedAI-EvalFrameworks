@@ -25,13 +25,15 @@ import reco_common as rc
 
 LMSTUDIO_URL = os.environ.get("LMSTUDIO_URL", "http://127.0.0.1:1234/v1/chat/completions")
 LMSTUDIO_MODEL = os.environ.get("LMSTUDIO_MODEL", "gemma")
+# Default temperature for generation; CI sets RECO_TEMPERATURE=0 for determinism.
+RECO_TEMPERATURE = float(os.environ.get("RECO_TEMPERATURE", "0.3"))
 
 SYSTEM = ("You are a product recommendation engine for a coffee-equipment shop. "
           "Recommend exactly one product from the catalogue you are given. "
           "Reply with ONLY the exact product name, nothing else.")
 
 
-def call_gemma(system, user, temperature=0.3):
+def call_gemma(system, user, temperature=RECO_TEMPERATURE):
     payload = {
         "model": LMSTUDIO_MODEL,
         "temperature": temperature,

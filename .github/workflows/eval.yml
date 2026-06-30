@@ -1,0 +1,61 @@
+name: promptfoo-eval
+
+# Runs the recommendation eval on every push / PR.
+# The model-under-test (Gemma) runs inside the runner via Ollama, so no LM Studio
+# dependency. OpenAI is used only for the embedding-similarity scorer and the
+# LLM-as-judge rubrics — supply OPENAI_API_KEY as a repository secret.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: promptfoo-reco
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # --- Model-under-test: Ollama serving Gemma -------------------------
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
+
+      - name: Start Ollama and pull Gemma
+        run: |
+          ollama serve &
+          # wait for the OpenAI-compatible endpoint to come up
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:11434/api/version && break
+            sleep 1
+          done
+          ollama pull gemma:2b
+
+      # --- Run the eval ---------------------------------------------------
+      - name: promptfoo eval
+        continue-on-error: true   # report-only for now; tighten to a real gate once baselines are known
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # repoint the recommend.py provider at Ollama's OpenAI-compatible endpoint
+          LMSTUDIO_URL: http://127.0.0.1:11434/v1/chat/completions
+          LMSTUDIO_MODEL: gemma:2b
+          RECO_TEMPERATURE: '0'         # deterministic generation in CI
+          PROMPTFOO_CACHE_ENABLED: 'true'
+        run: npx promptfoo@latest eval --output results.json
+
+      # --- Publish results ------------------------------------------------
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: promptfoo-results
+          path: promptfoo-reco/results.json
