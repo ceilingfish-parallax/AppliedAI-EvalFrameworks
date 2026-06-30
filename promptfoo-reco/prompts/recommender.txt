@@ -1,0 +1,27 @@
+You are the recommendation engine for a coffee-equipment shop. Choose the SINGLE
+product this customer is most likely to buy next.
+
+Purchase history (oldest first; the LAST line is their most recent purchase):
+{{history_text}}
+
+Catalogue (name | category | £price | released):
+{{catalogue_text}}
+
+Pick the product that best fits how this customer is building out their coffee setup:
+
+• COMPLEMENT WHAT THEY OWN. The best next purchase usually works TOGETHER with their
+  existing gear but is a DIFFERENT type of item — something their current equipment
+  needs to perform well, or a natural companion to it. Never recommend another item
+  of a type they already own.
+
+• REPLENISH CONSUMABLES. Things like coffee beans and filters get used up and
+  re-bought regularly — a reliable pick when no clear companion is missing.
+
+• FIT THE CUSTOMER. Stay relevant to their MOST RECENT purchases and current
+  interest, and match their usual spending level rather than pushing a pricier
+  item on a modest spender.
+
+Never recommend something they already own. Recommend only coffee-related products
+(ignore unrelated catalogue items).
+
+Reply with ONLY the exact product name from the catalogue. Nothing else.
